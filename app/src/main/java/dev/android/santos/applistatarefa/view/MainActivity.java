@@ -2,6 +2,8 @@ package dev.android.santos.applistatarefa.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import dev.android.santos.applistatarefa.model.Tarefa;
+
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,8 +21,10 @@ public class MainActivity extends AppCompatActivity {
 
     Button btn_Limpar;
     Button btn_Salvar;
+    Button btn_Concluir;
     Button btn_Finalizar;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         btn_Limpar = findViewById(R.id.btn_Limpar);
         btn_Salvar = findViewById(R.id.btn_Salvar);
+        btn_Concluir = findViewById(R.id.btn_Concluir);
         btn_Finalizar = findViewById(R.id.btn_Finalizar);
 
         editNomeTarefa.setText(tarefa.getNomeTarefa());
@@ -53,11 +58,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btn_Finalizar.setOnClickListener(new View.OnClickListener() {
+        btn_Concluir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Programa encerrado com sucesso !", Toast.LENGTH_LONG).show();
-                finish();
+                Toast.makeText(MainActivity.this, "Tarefa concluída com sucesso !", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -69,6 +73,14 @@ public class MainActivity extends AppCompatActivity {
                 tarefa.setDataConclusao(editDataConclusao.getText().toString());
 
                 Toast.makeText(MainActivity.this, "Dados salvos com sucesso !" + tarefa.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        btn_Finalizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Programa finalizado com sucesso !", Toast.LENGTH_LONG).show();
+                finish();
             }
         });
     }
